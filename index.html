@@ -3,73 +3,232 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Joker Tennis</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
+  <title>Tennis Master | Telegram Channel</title>
+
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
-      background: #0a0a0a;
-      color: white;
-      font-family: 'Inter', sans-serif;
-      text-align: center;
+      font-family: 'Poppins', sans-serif;
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      height: 100vh;
-      margin: 0;
+      align-items: center;
+      text-align: center;
+      background: url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=800&q=80') no-repeat left center/cover;
+      color: #fff;
+      position: relative;
     }
-    .subscriber-counter {
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      width: 90%;
+      max-width: 400px;
+    }
+
+    .profile-pic {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 3px solid #00ffcc;
+      box-shadow: 0 0 20px #00ffcc;
+      margin: 0 auto 20px;
+      background: url('mypic.jpg') no-repeat center/cover;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #00ffcc;
+      text-shadow: 0 0 15px #00ffcc, 0 0 30px #00ffcc;
+      margin-bottom: 10px;
+    }
+
+    .tagline {
+      font-size: 1rem;
+      color: #fff;
+      text-shadow: 0 0 10px #00ffff;
+      margin-bottom: 10px;
+    }
+
+    /* Subscriber Count */
+    .subscriber-count {
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: #00ffcc;
+      text-shadow: 0 0 8px #00ffcc, 0 0 16px #00ffff;
+      margin-bottom: 25px;
+      transition: all 0.2s ease;
+    }
+
+    .pulse {
+      animation: slowPulse 2s infinite;
+    }
+
+    @keyframes slowPulse {
+      0%, 100% { text-shadow: 0 0 8px #00ffcc, 0 0 16px #00ffff; }
+      50% { text-shadow: 0 0 20px #00ffcc, 0 0 40px #00ffff; }
+    }
+
+    /* Free joining text */
+    .join-free-text {
+      font-size: 1rem;
+      color: #ff0099;
+      text-shadow: 0 0 10px #ff0099, 0 0 20px #ff66cc;
+      margin-bottom: 10px;
+      animation: glowPulse 1.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes glowPulse {
+      from { text-shadow: 0 0 8px #ff0099, 0 0 20px #ff66cc; }
+      to { text-shadow: 0 0 20px #ff0099, 0 0 40px #ff66cc; }
+    }
+
+    /* Progress Bar */
+    .progress-bar {
+      width: 80%;
+      height: 8px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px;
+      margin: 0 auto 25px;
+      overflow: hidden;
+      box-shadow: 0 0 10px #ff66cc;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #ff0099, #ff66cc, #00ffff);
+      box-shadow: 0 0 15px #ff66cc, 0 0 25px #00ffff;
+      border-radius: 10px;
+      animation: fillBar 20s linear forwards;
+    }
+
+    @keyframes fillBar {
+      from { width: 0%; }
+      to { width: 100%; }
+    }
+
+  /* Telegram Button */
+    .btn {
+      display: block;
+      width: 100%;
+      max-width: 280px;
+      margin: 10px auto;
+      padding: 12px 20px;
+      border: 2px solid #00ffff;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-weight: 500;
+      text-decoration: none;
+      color: #FF0000;
+      background: transparent;
+      box-shadow: 0 0 20px #00ffff;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #00ffff;
+      color: #000;
+      box-shadow: 0 0 25px #00ffff, 0 0 50px #00ffff;
+    }
+
+    .note {
+      margin-top: 25px;
       font-size: 1.5rem;
-      font-weight: 600;
-      color: #10b981;
-      margin-top: 0.25rem;
+      color: #ccc;
+      text-shadow: 0 0 8px #00ffff;
     }
-    .cta-btn {
-      background: linear-gradient(90deg, #06b6d4, #3b82f6);
-      color: white;
-      padding: 0.8rem 2rem;
-      border-radius: 9999px;
-      font-weight: 700;
-      font-size: 1.1rem;
-      margin-top: 1.2rem;
-      transition: transform 0.2s ease, opacity 0.2s ease;
-    }
-    .cta-btn:hover {
-      transform: scale(1.05);
-      opacity: 0.9;
+
+    @media (min-width: 1080px) {
+      body {
+        height: 1080px;
+        width: 1920px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="flex flex-col items-center">
-    <!-- Channel DP -->
-    <img src="your-dp.webp" alt="Joker Tennis DP" width="120" height="120" class="rounded-full mb-4 shadow-lg">
+  <div class="container">
+    <div class="profile-pic"></div>
+    <h1>Tennis master</h1>
+    <p class="tagline">All Tennis League Matches Reports Available</p>
 
-    <!-- Channel Heading -->
-    <h1 class="text-3xl font-bold text-white">🎾 Joker Tennis</h1>
+    <!-- ✅ Animated Subscriber Counter -->
+    <div class="subscriber-count" id="subscriberCount">44,359 subscribers</div>
 
-    <!-- Subscriber Counter -->
-    <div class="subscriber-counter" id="subscriberCount">43,989</div>
+    <!-- ✅ Free Joining Text + Progress Bar -->
+    <div class="join-free-text">Free Joining Ends Soon!</div>
+    <div class="progress-bar">
+      <div class="progress-fill"></div>
+    </div>
 
-    <!-- Tagline -->
-    <p class="text-gray-300 text-lg mt-2">All Tennis Matches Reports Here.</p>
+    <!-- ✅ Telegram Join Button -->
+    <a href="https://telegram.me/+b8q2Wohpuis0ZDg1" class="btn" target="_blank">Join My Telegram</a>
 
-    <!-- CTA Button -->
-    <a href="https://t.me/yourchannel" class="cta-btn">Join My Free Telegram Channel</a>
-
-    <!-- Bottom Line -->
-    <p class="text-gray-400 text-sm mt-6">Sabse Genuine and Accurate Kaam Milega Yaha par.</p>
+    <p class="note">100% Genuine Reports Milegi</p>
   </div>
 
   <script>
-    let count = 43989;
-    const counterEl = document.getElementById('subscriberCount');
+    // Smooth Subscriber Counter Animation
+    let count = 12359;
+    const target = 12845;
+    const counter = document.getElementById("subscriberCount");
 
-    function updateCount() {
-      count++;
-      counterEl.textContent = count.toLocaleString();
+    function animateSubscribers() {
+      if (count < target) {
+        const increment = Math.random() * 0.25;
+        count += increment;
+        counter.textContent = `${Math.floor(count).toLocaleString()} subscribers`;
+        requestAnimationFrame(animateSubscribers);
+      } else {
+        counter.textContent = `${target.toLocaleString()} subscribers`;
+        counter.classList.add("pulse");
+      }
     }
 
-    setInterval(updateCount, 1000);
+    animateSubscribers();
   </script>
+  <!-- Meta Pixel Code (Optimized for Speed) -->
+<script>
+window.addEventListener('load', function() {
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1822396645303128');
+  fbq('track', 'PageView');
+});
+</script>
+
+<noscript>
+  <img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1822396645303128&ev=PageView&noscript=1"/>
+</noscript>
+<!-- End Meta Pixel Code -->
+
 </body>
 </html>
